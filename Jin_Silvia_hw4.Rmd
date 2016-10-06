@@ -1,0 +1,132 @@
+---
+title: "Jin_Silvia_hw4"
+author: "Silvia Jin"
+date: "October 6, 2016"
+output: pdf_document
+---
+
+### Problem 01
+a) Create the vector (1,2,3,...,19,20).
+
+```{r}
+1:20
+```
+
+b) Create the vector (20,19,...,2,1).
+
+```{r}
+c(1:20,19:1)
+```
+c) Create the vecotr (1,2,3,...,19,20,19,18,...,2,1).
+```{r}
+c(1:20,19:1)
+```
+
+d) Create the vector (4,6,3) and assign it to the name tmp.
+```{r}
+tmp <- c(4,6,3)
+tmp
+```
+
+e) Create the vector (4,6,3,4,6,3,...,4,6,3) where there are 10 occurrences of 4.
+```{r}
+rep(c(4,6,3),10)
+```
+
+f) Create the vector (4,6,3,4,6,3,...,4,6,3,4) where there are 11 occurrences of 4.
+```{r}
+rep(c(4,6,3),l=31)
+```
+
+g) Create the vector(4,4,...,4, 6,6,...,6, 3,3,...,3) where there are 10 occurrences of 4, 20 occurrences of 6 and 30 occurrences of 3.
+```{r}
+rep(c(4,6,3), times = c(10,20,30))
+```
+
+### Problem 02
+Create a vecotr of the values of e^x cos(x) at x = 3,3.1,3.2,...,5.9,6.
+
+First we create a sequence of x, from 3 to 6, with steps of 0.1, then we calculate the equation of each entry in the list.
+```{r}
+xs <- seq(3,6,0.1)
+vec02 <- exp(xs)*cos(xs)
+vec02
+```
+
+
+### Problem 03
+a) Create the vector $(0.1^3*0.2^1, 0.1^6*0.2^4,...,0.1^{36}*0.2^{34})$.
+
+First we create the two sequences of the exponents, then we calculate the whole sequence.
+```{r}
+exp01 <- seq(3,36,3)
+exp02 <- seq(1,34,3)
+vec03a <- (0.1^exp01) * (0.2^exp02)
+vec03a
+```
+
+b) Create the vector (2,2^2/2,2^2/3,...,2^25/25).
+
+First we create the vector for the exponents (exps), then we create the vector for the numerator (nums) and for the denominator (den), then we calculate the result (vec03b).
+```{r}
+exps <- seq(1,25)
+nums <- 2^exps
+den <- seq(1,25)
+vec03b <- nums/den
+vec03b
+```
+
+### Problem 04
+
+a) 
+
+First we initialize a value (ans04a) for the sum, then we use a for loop to add up the sum.
+```{r}
+ans04a <- 0
+for (i in seq(10,100)){
+  ans04a <- ans04a + i^3 + 4*i^2
+}
+ans04a
+```
+Note: for this problem, we could also use:
+```{r}
+tmp <- 10:100
+sum(tmp^3+4*tmp^2)
+```
+
+b) 
+
+First we initialize a value (ans04b) for the sum, then we use a for loop to add up the sum.
+```{r}
+ans04b <- 0
+for (i in seq(1,25)){
+  ans04b <- ans04b + (2^i)/i + (3^i)/(i^2)
+}
+ans04b
+```
+
+Note: for this problem, we could also use:
+```{r}
+tmp <- 1:25
+sum((2^tmp)/tmp+(3^tmp)/(tmp^2))
+```
+
+### Problem 05
+
+a) Create the character vector ("label 1", "label 2",...,"label 30").
+```{r}
+paste("label", 1:30, sep = " ")
+```
+
+b) Create the character vector ("fn1", "fn2",...,"fn30").
+```{r}
+paste("fn", 1:30, sep="")
+```
+
+### Problem 06
+
+g) Create the vector(4,4,...,4, 6,6,...,6, 3,3,...,3) where there are 10 occurrences of 4, 20 occurrences of 6 and 30 occurrences of 3.
+```{r}
+rep(c(4,6,3), times = c(10,20,30))
+```
+
