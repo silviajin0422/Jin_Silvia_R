@@ -2,7 +2,7 @@
 title: "Jin_Silvia_hw4"
 author: "Silvia Jin"
 date: "October 6, 2016"
-output: pdf_document
+output: html_document
 ---
 
 ### Problem 01
@@ -139,11 +139,11 @@ a) Create the vector $(y_2-x_1,...,y_n-x_{n-1})$.
 
 First we create a null vector, then we use a for loop to put in each value.
 ```{r}
-vec10a <- numeric()
+vec06a <- numeric()
 for (i in seq(1,length(xVec)-1)){
-  vec10a[i] <- yVec[i+1] - xVec[i]
+  vec06a[i] <- yVec[i+1] - xVec[i]
 }
-vec10a
+vec06a
 ```
 
 Note: for this problem, we could also use:
@@ -155,33 +155,33 @@ b) Create the vector $(sin(y1)/cos(x2),sin(y2)/cos(x3),...,sin(y_{n-1)}/cos(x_n)
 
 First we create a null vector, then we use a for loop to put in each value.
 ```{r}
-vec10b <- numeric()
+vec06b <- numeric()
 for (i in seq(1,length(xVec)-1)){
-  vec10b[i] <- sin(yVec[i])/cos(xVec[i+1])
+  vec06b[i] <- sin(yVec[i])/cos(xVec[i+1])
 }
-vec10b
+vec06b
 ```
 
 c) Create the vector $(x_1+2x_2-x_3,x_{n-2}+2x_{n-1}-x_n)$.
 
 First we create a null vector, then we use a for loop to put in each value.
 ```{r}
-vec10c <- numeric()
+vec06c <- numeric()
 for (i in seq(1,length(xVec)-2)){
-  vec10c[i] <- xVec[i]+2*xVec[i+1]-xVec[i+2]
+  vec06c[i] <- xVec[i]+2*xVec[i+1]-xVec[i+2]
 }
-vec10c
+vec06c
 ```
 
 d) Calculate the sum $\sum^{n-1}_{i=1}\frac{e^{-x_i}+1}{x_i+10}$.
 
 First we create an initial value (ans10d), then we use a for loop to add up the values.
 ```{r}
-vec10d <- 0
+ans06d <- 0
 for (i in seq(1,length(xVec)-1)){
-  ans10d <- ans10d +exp(-xVec[i+1])/(xVec[i]+10)
+  ans06d <- ans06d +exp(-xVec[i+1])/(xVec[i]+10)
 }
-vec10d
+ans06d
 ```
 
 ### Problem 07
@@ -255,6 +255,7 @@ e) How many values in yVec are within 200 of the maximum value of the terms in y
 
 First we create an initial value (ans07e), then we use a for loop to add up the values.
 ```{r}
+yMax <- max(yVec)
 ans07e <- 0
 for (num in yVec){
   if (num > yMax-200){
