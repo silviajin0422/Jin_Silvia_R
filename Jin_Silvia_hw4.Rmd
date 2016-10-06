@@ -6,45 +6,46 @@ output: pdf_document
 ---
 
 ### Problem 01
-a) Create the vector (1,2,3,...,19,20).
+a) Create the vector $(1,2,3,...,19,20)$.
 
 ```{r}
 1:20
 ```
 
-b) Create the vector (20,19,...,2,1).
+b) Create the vector $(20,19,...,2,1)$.
 
+```{r}
+20:1
+```
+
+c) Create the vecotr $(1,2,3,...,19,20,19,18,...,2,1)$.
 ```{r}
 c(1:20,19:1)
 ```
-c) Create the vecotr (1,2,3,...,19,20,19,18,...,2,1).
-```{r}
-c(1:20,19:1)
-```
 
-d) Create the vector (4,6,3) and assign it to the name tmp.
+d) Create the vector $(4,6,3)$ and assign it to the name tmp.
 ```{r}
 tmp <- c(4,6,3)
 tmp
 ```
 
-e) Create the vector (4,6,3,4,6,3,...,4,6,3) where there are 10 occurrences of 4.
+e) Create the vector $(4,6,3,4,6,3,...,4,6,3)$ where there are 10 occurrences of 4.
 ```{r}
 rep(c(4,6,3),10)
 ```
 
-f) Create the vector (4,6,3,4,6,3,...,4,6,3,4) where there are 11 occurrences of 4.
+f) Create the vector $(4,6,3,4,6,3,...,4,6,3,4)$ where there are 11 occurrences of 4.
 ```{r}
 rep(c(4,6,3),l=31)
 ```
 
-g) Create the vector(4,4,...,4, 6,6,...,6, 3,3,...,3) where there are 10 occurrences of 4, 20 occurrences of 6 and 30 occurrences of 3.
+g) Create the vector $(4,4,...,4, 6,6,...,6, 3,3,...,3)$ where there are 10 occurrences of 4, 20 occurrences of 6 and 30 occurrences of 3.
 ```{r}
 rep(c(4,6,3), times = c(10,20,30))
 ```
 
 ### Problem 02
-Create a vecotr of the values of e^x cos(x) at x = 3,3.1,3.2,...,5.9,6.
+Create a vecotr of the values of $e^x cos(x)$ at $x = 3,3.1,3.2,...,5.9,6$.
 
 First we create a sequence of x, from 3 to 6, with steps of 0.1, then we calculate the equation of each entry in the list.
 ```{r}
@@ -65,7 +66,7 @@ vec03a <- (0.1^exp01) * (0.2^exp02)
 vec03a
 ```
 
-b) Create the vector (2,2^2/2,2^2/3,...,2^25/25).
+b) Create the vector $(2,2^2/2,2^2/3,...,2^{25}/25)$.
 
 First we create the vector for the exponents (exps), then we create the vector for the numerator (nums) and for the denominator (den), then we calculate the result (vec03b).
 ```{r}
@@ -78,7 +79,7 @@ vec03b
 
 ### Problem 04
 
-a) 
+a) Calculate the sum $\sum^{100}_{i=10}(i^3+4i^2)$.
 
 First we initialize a value (ans04a) for the sum, then we use a for loop to add up the sum.
 ```{r}
@@ -88,13 +89,14 @@ for (i in seq(10,100)){
 }
 ans04a
 ```
+
 Note: for this problem, we could also use:
 ```{r}
 tmp <- 10:100
 sum(tmp^3+4*tmp^2)
 ```
 
-b) 
+b) Calculate the sum $\sum^{25}_{i=1}(\frac{2^i}{i}+\frac{3^i}{i^2})$.
 
 First we initialize a value (ans04b) for the sum, then we use a for loop to add up the sum.
 ```{r}
@@ -125,8 +127,211 @@ paste("fn", 1:30, sep="")
 
 ### Problem 06
 
-g) Create the vector(4,4,...,4, 6,6,...,6, 3,3,...,3) where there are 10 occurrences of 4, 20 occurrences of 6 and 30 occurrences of 3.
+Execute the following lines which create two vectors of random integers which are chosen with replacement from the integers $0,1,...,999$. Both vectors have length 250.
+
 ```{r}
-rep(c(4,6,3), times = c(10,20,30))
+set.seed(50)
+xVec <- sample(0:999, 250, replace=T)
+yVec <- sample(0:999, 250, replace=T)
 ```
 
+a) Create the vector $(y_2-x_1,...,y_n-x_{n-1})$.
+
+First we create a null vector, then we use a for loop to put in each value.
+```{r}
+vec10a <- numeric()
+for (i in seq(1,length(xVec)-1)){
+  vec10a[i] <- yVec[i+1] - xVec[i]
+}
+vec10a
+```
+
+Note: for this problem, we could also use:
+```{r}
+yVec[-1] - xVec[-length(xVec)]
+```
+
+b) Create the vector $(sin(y1)/cos(x2),sin(y2)/cos(x3),...,sin(y_{n-1)}/cos(x_n))$.
+
+First we create a null vector, then we use a for loop to put in each value.
+```{r}
+vec10b <- numeric()
+for (i in seq(1,length(xVec)-1)){
+  vec10b[i] <- sin(yVec[i])/cos(xVec[i+1])
+}
+vec10b
+```
+
+c) Create the vector $(x_1+2x_2-x_3,x_{n-2}+2x_{n-1}-x_n)$.
+
+First we create a null vector, then we use a for loop to put in each value.
+```{r}
+vec10c <- numeric()
+for (i in seq(1,length(xVec)-2)){
+  vec10c[i] <- xVec[i]+2*xVec[i+1]-xVec[i+2]
+}
+vec10c
+```
+
+d) Calculate the sum $\sum^{n-1}_{i=1}\frac{e^{-x_i}+1}{x_i+10}$.
+
+First we create an initial value (ans10d), then we use a for loop to add up the values.
+```{r}
+vec10d <- 0
+for (i in seq(1,length(xVec)-1)){
+  ans10d <- ans10d +exp(-xVec[i+1])/(xVec[i]+10)
+}
+vec10d
+```
+
+### Problem 07
+
+This question uses the vectors xVec and yVec created in the previous question and the functions sort, order, mean, sqrt, sum and abs.
+
+a) Pick out the values in yVec which are $>600$.
+
+First we create a null vector (ans07a), then we use a for loop to put in each value.
+```{r}
+ans07a <- numeric()
+for (num in yVec){
+  if (num > 600){
+    ans07a <- c(ans07a, num)
+  }
+}
+ans07a
+```
+
+Note: for this problem, we could also use:
+```{r}
+yVec[yVec>600]
+```
+
+b) Get the index position in yVec of the values which are $>600$.
+
+First we create a null vector (ans07b), then we use a for loop to put in each value.
+```{r}
+ans07b <- numeric()
+for (i in seq(1,length(xVec))){
+  if (xVec[i]>600){
+    ans07b <- c(ans07b,i)
+  }
+}
+ans07b
+```
+
+c) Get the values in xVec which correspond to the values in yVec which are $> 600$. (By correspond, we mean at the same index positions.)
+
+First we create a null vector (ans07c), then we use a for loop to put in each value.
+```{r}
+ans07c <- numeric()
+for (i in seq(1,length(yVec))){
+  if (yVec[i]>600){
+    ans07c <- c(ans07c,xVec[i])
+  }
+}
+ans07c
+```
+
+Note: for this problem, we could also use:
+```{r}
+xVec[yVec>600]
+```
+
+d) Create the vector $(|x_1-\bar{x}|^{1/2},|x_2-\bar{x}|^{1/2},...,|x_n-\bar{x}|^{1/2})$ where $\bar{x}$ denotes the mean of the vectors $x=(x_1,x_2,...,x_n)$.
+
+First we calculate the mean of xVec, then we create the vector.
+```{r}
+xMean <- mean(xVec)
+ans07d <- sqrt(abs(xVec-xMean))
+ans07d
+```
+
+Note: for this problem, we could also use:
+```{r}
+sqrt(abs(xVec-mean(xVec)))
+```
+
+e) How many values in yVec are within 200 of the maximum value of the terms in yVec? 
+
+First we create an initial value (ans07e), then we use a for loop to add up the values.
+```{r}
+ans07e <- 0
+for (num in yVec){
+  if (num > yMax-200){
+    ans07e <- ans07e + 1
+  }
+}
+ans07e
+```
+
+Note: for this problem, we could also use:
+```{r}
+sum(yVec>max(yVec)-200)
+```
+
+f) How many numbers in xVec are divisible by 2? (Note that the mod operator is denoted \%\%.)
+
+First we create an initial value (ans07f), then we use a for loop to add up the values.
+```{r}
+ans07f <- 0
+for (num in xVec){
+  if (num%%2 == 0){
+    ans07f <- ans07f + 1
+  }
+}
+ans07f
+```
+
+Note: for this problem, we could also use:
+```{r}
+sum(xVec%%2==0)
+```
+
+g) Sort the numbers in the vector xVec in the order of increasing values in yVec
+
+First we sort the values in yVec, and store the sorted indexes, and create a null vector (ans07g), then we put in the x values corresponding to the indexes using a for loop.
+```{r}
+indexes <- sort(yVec, index.return=TRUE)$ix
+ans07g <- numeric()
+for (index in indexes){
+  ans07g <- c(ans07g,xVec[index])
+}
+ans07g
+```
+
+h) Pick out the elements in yVec at index positions $1,4,7,10,13,…$
+
+First we create a null vector (ans07h), then we use a for loop to put in each value.
+```{r}
+ans07h <- numeric()
+for (i in seq(1,250,3)){
+  ans07h <- c(ans07h,yVec[i])
+}
+ans07h
+```
+
+Note: for this problem, we could also use:
+```{r}
+yVec[c(T,F,F)]
+```
+
+### Problem 08
+
+Calculate
+
+We create two vectors for the numerators (num08) and denominators (den08). Then we create an initial value (ans08) as 1, then we use a for loop to add on the values.
+
+```{r}
+num08 <- cumprod(seq(2,38,2))
+den08 <- cumprod(seq(3,39,2))
+ans08 <- 1
+for (i in seq(1,19)){
+  ans08 <- ans08 + num08[i]/den08[i]
+}
+ans08
+```
+
+Note: for this problem, we could also use:
+```{r}
+1+sum(cumprod(seq(2,38,2)/seq(3,39,2)))
+```
