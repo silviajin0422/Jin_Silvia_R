@@ -4,6 +4,7 @@ author: "Silvia Jin"
 date: "October 6, 2016"
 output: html_document
 ---
+##Prof G - Excellent work!!
 
 ### Problem 01
 a) Create the vector $(1,2,3,...,19,20)$.

@@ -20,7 +20,7 @@ myData <- diamonds
 methods(class=data.frame)
 
 # Print to the console all attributes associated with a data frame.
-attributes(myData)
+#attributes(myData)
 
 # Determine the number of columns in a data frame.
 ncol(myData)
